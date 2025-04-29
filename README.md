@@ -1,7 +1,7 @@
 # 🚁 SuperMostfaCopter IV
 
 <a href="https://lejrimostfa.github.io/SuperMostfaCopter_IV/">
-  <img src="https://github.com/lejrimostfa/SuperMostfaCopter_IV/blob/main/PLAYNOW.png?raw=true" alt="" style="max-width: 500px;">
+  <img src="https://github.com/lejrimostfa/SuperMostfaCopter_IV/blob/main/PLAYNOW.png?raw=true" alt="" style="max-width: 350px;">
 </a>
 
 A fast-paced pixel shooter **inspired by 80s arcade helicopter games**, coded from scratch in HTML5/JavaScript with retro visuals and modern control precision.
