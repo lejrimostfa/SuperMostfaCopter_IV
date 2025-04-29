@@ -9,10 +9,11 @@ A fast-paced pixel shooter **inspired by 80s arcade helicopter games**, coded fr
 
 ## 🎮 Controls (EN)
 
-↑ ↓ ← → : Move
-Z       : Shoot laser
-X       : Drop bomb
-P       : Pause / Menu
+↑ ↓ ← → : Déplacement  
+Z/Space : Tir laser (OR W on French Keyboard)  
+X       : Bombe  
+P       : Pause / Menu  
+R       : Reset Parameters  
 
 ---
 
@@ -31,20 +32,21 @@ P       : Pause / Menu
 ## 📁 Project Structure
 
 SuperMostfaCopter_IV/
-├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   ├── main.js
-│   ├── audio.js
-│   ├── assets.js
-│   ├── game.js
-│   ├── menu.js
-│   └── settings.js
-├── assets/
-│   ├── *.png
-│   └── audio/
-│       └── *.mp3 / *.wav
+├── index.html  
+├── css/  
+│   └── styles.css  
+├── js/  
+│   ├── main.js  
+│   ├── audio.js  
+│   ├── assets.js  
+│   ├── game.js  
+│   ├── menu.js  
+│   └── settings.js  
+├── assets/  
+│   ├── *.png  
+│   └── audio/  
+│       ├── *.mp3  
+│       └── *.wav  
 
 ---
 
@@ -57,10 +59,11 @@ Credit is appreciated if reused in a project or video!
 
 ## 🇫🇷 Contrôles (FR)
 
-↑ ↓ ← → : Déplacement
-Z       : Tir laser
-X       : Bombe
-P       : Pause / Menu
+↑ ↓ ← → : Déplacement  
+Z/Space : Tir laser (OR W on French Keyboard)  
+X       : Bombe  
+P       : Pause / Menu  
+R       : Reset Parameters  
 
 ---
 
@@ -73,12 +76,12 @@ Graphismes rétro, gameplay rapide, et personnalisation poussée.
 
 ## ⚙️ Fonctionnalités
 
-- Moteur maison 100% JS, sans dépendance
-- Ennemis volants, tourelles, collectibles, collisions, explosions
-- Écran titre avec bouton personnalisable
-- Menu complet avec sliders dynamiques (gravité, inertie, bonus…)
-- Effets sonores rétro (MP3/WAV)
-- Compatible petit, grand ou plein écran
+- Moteur maison 100% JS, sans dépendance  
+- Ennemis volants, tourelles, collectibles, collisions, explosions  
+- Écran titre avec bouton personnalisable  
+- Menu complet avec sliders dynamiques (gravité, inertie, bonus…)  
+- Effets sonores rétro (MP3/WAV)  
+- Compatible petit, grand ou plein écran  
 
 ---
 
