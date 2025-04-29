@@ -1,6 +1,8 @@
 Voici la version complète en anglais puis en français, dans un format prêt pour GitHub.
 # 🚁 SuperMostfaCopter IV
 
+[![Play on GitHub Pages](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://lejrimostfa.github.io/SuperMostfaCopter_IV/)
+
 A fast-paced pixel shooter **inspired by 80s arcade helicopter games**, coded from scratch in HTML5/JavaScript with retro visuals and modern control precision.
 
 ---
