@@ -1,4 +1,3 @@
-Voici la version complète en anglais puis en français, dans un format prêt pour GitHub.
 # 🚁 SuperMostfaCopter IV
 
 [![Play on GitHub Pages](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://lejrimostfa.github.io/SuperMostfaCopter_IV/)
