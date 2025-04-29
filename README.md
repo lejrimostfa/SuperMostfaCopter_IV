@@ -1,6 +1,8 @@
 # 🚁 SuperMostfaCopter IV
 
-[![Play on GitHub Pages](https://img.shields.io/badge/Play-Now-brightgreen?style=for-the-badge)](https://lejrimostfa.github.io/SuperMostfaCopter_IV/)
+<a href="https://lejrimostfa.github.io/SuperMostfaCopter_IV/">
+  <img src="https://lejrimostfa.github.io/SuperMostfaCopter_IV/PLAYNOW.png" alt="PLAY NOW" style="max-width: 500px;">
+</a>
 
 A fast-paced pixel shooter **inspired by 80s arcade helicopter games**, coded from scratch in HTML5/JavaScript with retro visuals and modern control precision.
 
