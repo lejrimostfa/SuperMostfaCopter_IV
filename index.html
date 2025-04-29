@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Cobra Remake</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Tooltip for title screen controls */
+    #startGameButton:hover + #tooltip {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game" width="320" height="384"></canvas>
+  <div id="gameOverContainer" style="display: none;">
+    <img id="gameOverImage" src="assets/gameover.png" alt="Game Over" style="max-width: 200px;"/>
+    <div id="yourScore" style="color:white; font-family: monospace; font-size: 20px;">Your Score: 0</div>
+    <button id="restartButton">RESTART</button>
+    <div id="highScoresList" style="color:white; font-family: monospace; font-size: 16px;"></div>
+  </div>
+  <div id="pauseMenu" style="
+       display: none;
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0,0,0,0.5);
+       z-index: 5;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       gap: 20px;
+  ">
+    <div style="color:white; font-family:monospace; font-size:32px;">PAUSE</div>
+    <button id="pauseRestartButton" style="font-size:20px; padding:10px 20px; background:#222; color:#FFF; border:2px solid #FFF; cursor:pointer;">RESTART</button>
+  </div>
+  <button id="menuButton" style="position:absolute; top:10px; right:10px;">Menu</button>
+
+  <div id="menu" style="display:none;">
+    <button id="defaultSettingsButton">Defaults Settings</button><br/><br/>
+
+    <label>Vitesse Scroll 
+      <input id="scrollSpeedSlider" type="range" min="0.2" max="2" step="0.1" value="0.7">
+    </label> 
+    <span id="scrollSpeedValue">0.8</span><br/>
+
+    <label>HP Départ 
+      <input id="hpStartSlider" type="range" min="1" max="100" step="1" value="10">
+    </label> 
+    <span id="hpStartValue">10</span><br/>
+
+    <label>Inertie 
+      <input id="inertiaSlider" type="range" min="0" max="0.5" step="0.01" value="0.11">
+    </label> 
+    <span id="inertiaValue">0.3</span><br/>
+
+    <label>Gravité 
+      <input id="gravitySlider" type="range" min="0" max="0.1" step="0.01" value="0.04">
+    </label> 
+    <span id="gravityValue">0.02</span><br/>
+
+    <label>Vitesse Laser 
+      <input id="laserSpeedSlider" type="range" min="2" max="8" step="0.5" value="3.0">
+    </label> 
+    <span id="laserSpeedValue">4</span><br/>
+
+    <label>Vitesse Bombe 
+      <input id="bombSpeedSlider" type="range" min="0" max="3" step="0.1" value="0.2">
+    </label> 
+    <span id="bombSpeedValue">1.5</span><br/>
+
+    <br/>
+    <strong>Terrain :</strong><br/>
+    <label>Chance Pics (%) 
+      <input id="terrainSpikeChanceSlider" type="range" min="0" max="0.1" step="0.005" value="0">
+    </label> 
+    <span id="terrainSpikeChanceValue">0.02</span><br/>
+
+    <label>Hauteur Pics 
+      <input id="terrainSpikeHeightSlider" type="range" min="5" max="50" step="1" value="5">
+    </label> 
+    <span id="terrainSpikeHeightValue">20</span><br/>
+
+    <br/>
+    <strong>Grotte :</strong><br/>
+    <label>Amplitude Sinuosité 
+      <input id="caveAmplitudeSlider" type="range" min="5" max="50" step="1" value="50">
+    </label> 
+    <span id="caveAmplitudeValue">25</span><br/>
+
+    <label>Fréquence Sinuosité 
+      <input id="caveFrequencySlider" type="range" min="0.005" max="0.05" step="0.001" value="0.042">
+    </label> 
+    <span id="caveFrequencyValue">0.02</span><br/>
+
+    <label>Ouverture Min Grotte 
+      <input id="cavePassageMinSlider" type="range" min="40" max="120" step="5" value="90">
+    </label> 
+    <span id="cavePassageMinValue">80</span><br/>
+
+    <label>Ouverture Max Grotte 
+      <input id="cavePassageMaxSlider" type="range" min="60" max="150" step="5" value="95">
+    </label> 
+    <span id="cavePassageMaxValue">120</span><br/>
+
+    <label>Amplitude Décalage 
+      <input id="caveOffsetAmplitudeSlider" type="range" min="0" max="50" step="1" value="20">
+    </label> 
+    <span id="caveOffsetAmplitudeValue">20</span><br/>
+
+    <label>Amplitude Pics Grotte 
+      <input id="caveSpikeAmplitudeSlider" type="range" min="0" max="20" step="1" value="4">
+    </label> 
+    <span id="caveSpikeAmplitudeValue">8</span><br/>
+
+    <label>Fréquence Pics Grotte 
+      <input id="caveSpikeFrequencySlider" type="range" min="0.1" max="2" step="0.05" value="0.35">
+    </label> 
+    <span id="caveSpikeFrequencyValue">0.7</span><br/>
+    <br/>
+    <label>Screen Size 
+      <select id="screenSizeSelect">
+        <option value="small">Small (320×384)</option>
+        <option value="medium" selected>Medium (640×768)</option>
+        <option value="large">Large (960×1152)</option>
+        <option value="fullscreen">Fullscreen</option>
+      </select>
+    </label><br/>
+
+    <br/>
+    <label>Vitesse Consommation 
+      <input id="fuelConsumptionRateSlider" type="range" min="0" max="1" step="0.01" value="0.26">
+    </label>
+    <span id="fuelConsumptionRateValue">0.50</span><br/>
+
+    <label>Quantité Fuel 
+      <input id="fuelQuantitySlider" type="range" min="100" max="2000" step="100" value="1000">
+    </label>
+    <span id="fuelQuantityValue">1000</span><br/>
+
+    <label>Bonus Fuel Tank 
+      <input id="fuelTankBonusSlider" type="range" min="0" max="500" step="10" value="100">
+    </label> 
+    <span id="fuelTankBonusValue">100</span><br/>
+
+    <label>Bonus Cœur 
+      <input id="heartBonusSlider" type="range" min="0" max="10" step="1" value="3">
+    </label> 
+    <span id="heartBonusValue">3</span><br/>
+    <label>Bonus Score Fuel Tank 
+      <input id="fuelScoreBonusSlider" type="range" min="0" max="500" step="10" value="50">
+    </label> 
+    <span id="fuelScoreBonusValue">50</span><br/>
+    <label>Bonus Score Cœur 
+      <input id="heartScoreBonusSlider" type="range" min="0" max="100" step="5" value="20">
+    </label> 
+    <span id="heartScoreBonusValue">20</span><br/>
+    <label>Cooldown Missiles
+      <input id="turretMissileCooldownSlider" type="range" min="0.1" max="5" step="0.1" value="1.0">
+    </label>
+    <span id="turretMissileCooldownValue">1.0</span><br/>
+    <label>
+      <input type="checkbox" id="showCollisionCheckbox">
+      Afficher les boîtes de collision
+    </label><br/>
+  </div>
+
+</body>
+  <div id="titleScreen" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#000; z-index:10; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <img src="assets/titlescreen.png" alt="Title" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:-1;">
+    <button id="startButton" style="padding:20px 40px; font-size:24px; position:absolute; left:33%; top:calc(66% + 20px);">START</button>
+    <div id="tooltip" style="position: absolute; top:calc(70% + 50px); left: 33%; transform: translateX(-50%); color:white; font-family:monospace; font-size:14px; display:none;">
+      Flèches pour se déplacer · Z tirer · X larguer une bombe · P pause
+    </div>
+    <div id="positionSliders" style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.5); padding:10px; border:1px solid white; border-radius:8px;">
+      <div style="color:white; font-family:monospace; font-size:14px;">Button X
+        <input id="buttonXSlider" type="range" min="0" max="100" value="33">
+      </div>
+      <div style="color:white; font-family:monospace; font-size:14px;">Button Y
+        <input id="buttonYSlider" type="range" min="0" max="100" value="66">
+      </div>
+      <div style="color:white; font-family:monospace; font-size:14px;">Tooltip Y
+        <input id="tooltipYSlider" type="range" min="0" max="100" value="70">
+      </div>
+      <button id="savePositionsButton" style="margin-top:10px;">Sauver positions</button>
+    </div>
+  </div>
+  <!-- Inclusion des scripts modules propres -->
+  <script src="js/assets.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Position sliders for title screen button and tooltip
+    document.addEventListener('DOMContentLoaded', function() {
+      const startButton = document.getElementById('startButton');
+      const tooltip = document.getElementById('tooltip');
+      const buttonXSlider = document.getElementById('buttonXSlider');
+      const buttonYSlider = document.getElementById('buttonYSlider');
+      const tooltipYSlider = document.getElementById('tooltipYSlider');
+      const savePositionsButton = document.getElementById('savePositionsButton');
+
+      function updateButtonAndTooltip() {
+        const buttonX = buttonXSlider.value;
+        const buttonY = buttonYSlider.value;
+        const tooltipY = tooltipYSlider.value;
+        if (startButton) {
+          startButton.style.left = `${buttonX}%`;
+          startButton.style.top = `calc(${buttonY}% + 20px)`;
+        }
+        if (tooltip) {
+          tooltip.style.top = `calc(${tooltipY}% + 50px)`;
+          tooltip.style.left = `${buttonX}%`;
+        }
+      }
+
+      buttonXSlider.addEventListener('input', updateButtonAndTooltip);
+      buttonYSlider.addEventListener('input', updateButtonAndTooltip);
+      tooltipYSlider.addEventListener('input', updateButtonAndTooltip);
+
+      savePositionsButton.addEventListener('click', function() {
+        localStorage.setItem('buttonX', buttonXSlider.value);
+        localStorage.setItem('buttonY', buttonYSlider.value);
+        localStorage.setItem('tooltipY', tooltipYSlider.value);
+        alert('Positions sauvegardées !');
+      });
+
+      function loadSavedPositions() {
+        const savedButtonX = localStorage.getItem('buttonX');
+        const savedButtonY = localStorage.getItem('buttonY');
+        const savedTooltipY = localStorage.getItem('tooltipY');
+        if (savedButtonX !== null) buttonXSlider.value = savedButtonX;
+        if (savedButtonY !== null) buttonYSlider.value = savedButtonY;
+        if (savedTooltipY !== null) tooltipYSlider.value = savedTooltipY;
+        updateButtonAndTooltip();
+      }
+
+      loadSavedPositions();
+    });
+  </script>
+</body>
+</html>
