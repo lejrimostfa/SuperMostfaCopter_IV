@@ -73,6 +73,7 @@ R       : Reset Parameters
 Jeu de tir pixelisé **inspiré des classiques de l’arcade 80s**, codé en JavaScript pur.  
 Graphismes rétro, gameplay rapide, et personnalisation poussée.
 
+
 ---
 
 ## ⚙️ Fonctionnalités
